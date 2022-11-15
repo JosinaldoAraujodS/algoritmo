@@ -27,6 +27,7 @@ public class HelloVetor {
         }
         System.out.println("]");
         linhas();
+        input.close();
     }
 
 }

@@ -1,8 +1,10 @@
-import java.util.Scanner;
 /*usar funções de outros arquivos;
   criar variáveis globais;
   ler tamanho da matriz para fazer loop dinâmico;
+  conseguir usar a função mtzXmtz;
+  retorno de funções;
 */
+import java.util.Scanner;
 
 public class MultiMatriz {
 

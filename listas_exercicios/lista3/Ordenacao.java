@@ -56,5 +56,6 @@ public class Ordenacao {
         }
         System.out.println("]");
         linhas();
+        input.close();
     }
 }
