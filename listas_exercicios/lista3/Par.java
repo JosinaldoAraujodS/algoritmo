@@ -2,6 +2,10 @@ import java.util.Scanner;
 
 public class Par {
 
+    public static void linhamenor() {
+        System.out.println("----------");
+    }
+
     public static void linhas() {
         System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
     }
@@ -30,13 +34,13 @@ public class Par {
         linhas();
         System.out.println("Números pares do vetor:");
 
-        System.out.println("----");
+        linhamenor();
         for (int i = 0; i < nums.length; i++) {
             if (nums[i] % 2 == 0) {
                 System.out.println(nums[i]);
             }
         }
-        System.out.println("----");
+        linhamenor();
         linhas();
     }
 }

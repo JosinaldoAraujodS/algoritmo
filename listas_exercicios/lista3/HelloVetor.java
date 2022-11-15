@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class HeloVetor {
+public class HelloVetor {
 
     public static void linhas() {
         System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
@@ -11,7 +11,7 @@ public class HeloVetor {
         int[] nums = new int[5];
 
         for (int i = 0; i < 5; i++) {
-            System.out.println("Digite o número " + (i + 1));
+            System.out.println("Digite o número " + (i + 1) + ":");
             nums[i] = input.nextInt();
         }
 
@@ -28,4 +28,5 @@ public class HeloVetor {
         System.out.println("]");
         linhas();
     }
+
 }
