@@ -31,11 +31,13 @@ public class Crud {
     }
 
     public static void opcoes() {
+        System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
         System.out.println("Informe o que deseja fazer:");
         System.out.println("Digite 1 para adicionar um novo aluno;");
         System.out.println("Digite 2 para visualizar um aluno;");
         System.out.println("Digite 3 para editar o nome de um aluno;");
         System.out.println("Digite 4 para remover um aluno:");
+        System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
     }
 
     public static void main(String[] args) {
@@ -50,9 +52,7 @@ public class Crud {
             lin();
             System.out.println("Lista dos alunos:");
             lerArr(alunos);
-            lin();
             opcoes();
-            lin();
             opcao = input.nextInt();
 
             while (opcao > 4 || opcao < 1) {
