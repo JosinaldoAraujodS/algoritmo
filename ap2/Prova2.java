@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+
 // pode colocar o retorno em mais de um lugar na função - simula um BREAK para por exemplo sair de um loop antes de ler tudo
 // usar arraylist como variavel global
 // fazer as operações nas funções
@@ -69,8 +70,8 @@ public class Prova2 {
 
         // gerar notas e faltas
         for (i = 0; i < alunos.size(); i++) {
-            notas1.add(random.nextFloat(11));
-            notas2.add(random.nextFloat(11));
+            notas1.add(random.nextFloat(10));
+            notas2.add(random.nextFloat(10));
             faltas.add(random.nextInt(5));
             ids.add(i + 1);
         }
@@ -160,13 +161,68 @@ public class Prova2 {
                     id = input.nextInt();
                 }
                 rtn_index = idCheck(ids, id);
+
+                System.out.println("Deseja editar o nome de " + alunos.get(rtn_index) + "? [s/n]: ");
+                sim_nao = input.next();
+                while ((sim_nao.equals("s")) == false && (sim_nao.equals("n") == false)) {
+                    System.out.print("Digite 's' para SIM ou 'n' para NÃO: ");
+                    sim_nao = input.next();
+                }
+                if (sim_nao.equals("s")) {
+                    System.out.println("Informe o novo nome do aluno: ");
+                    alunos.set(rtn_index, input.next());
+                }
+                System.out.println("Deseja editar as notas de " + alunos.get(rtn_index) + "? [s/n]: ");
+                sim_nao = input.next();
+                while ((sim_nao.equals("s")) == false && (sim_nao.equals("n") == false)) {
+                    System.out.print("Digite 's' para SIM ou 'n' para NÃO: ");
+                    sim_nao = input.next();
+                }
+                if (sim_nao.equals("s")) {
+                    System.out.println("Informe a nota primeira prova: ");
+                    notas1.set(rtn_index, input.nextFloat());
+                    System.out.println("Informe a nota segunda prova: ");
+                    notas2.set(rtn_index, input.nextFloat());
+                }
+                System.out.println("Deseja editar a quantidade de faltas de " + alunos.get(rtn_index) + "? [s/n]: ");
+                sim_nao = input.next();
+                while ((sim_nao.equals("s")) == false && (sim_nao.equals("n") == false)) {
+                    System.out.print("Digite 's' para SIM ou 'n' para NÃO: ");
+                    sim_nao = input.next();
+                }
+                if (sim_nao.equals("s")) {
+                    System.out.println("Informe a quantidade de faltas de " + alunos.get(rtn_index) + ": ");
+                    faltas.set(rtn_index, input.nextInt());
+                }
                 linha();
-                System.out.println("Aluno selecionado para edição: " + alunos.get(rtn_index));
+            } else if (opcao == 4) {
+                System.out.println("Informe o id do aluno que deseja remover: ");
+                id = input.nextInt();
+                while (idCheck(ids, id) == -1) {
+                    System.out.println("O id informado não existe! Informe um id válido para continuar!");
+                    System.out.print("Informe o id do aluno que deseja visualizar: ");
+                    id = input.nextInt();
+                }
+                rtn_index = idCheck(ids, id);
+                System.out.println("Deseja remover todas as informações de " + alunos.get(rtn_index) + "? [s/n]: ");
+                sim_nao = input.next();
+                while ((sim_nao.equals("s")) == false && (sim_nao.equals("n") == false)) {
+                    System.out.print("Digite 's' para SIM ou 'n' para NÃO: ");
+                    sim_nao = input.next();
+                }
+                if (sim_nao.equals("s")) {
+                    System.out.println("Informações deletadas!");
+                } else if (sim_nao.equals("n")) {
+                    System.out.println(
+                            "Operação abortada! As informações de " + alunos.get(rtn_index) + " não foram deletadas!");
+                }
+            } else if (opcao == 5) {
+                for (i = 0; i < alunos.size(); i++) {
+                    System.out.println("id: " + ids.get(i) + " - " + alunos.get(i) + "|Nota1: " + notas1.get(i) + "|Nota2: " + notas2.get(i) + "|Faltas: " + faltas.get(i));
+                }
             } else if (opcao == 999) {
                 System.out.println("Fim da Sessão...");
-                System.out.println("Volte Sempre.");
-            }else{
-                System.out.println("No momento esta opção não está disponível, tente 1, 2 ou 3(aqui tbm não ta pronto)");
+                System.out.println("Volte Sempre!");
             }
         }
         input.close();
