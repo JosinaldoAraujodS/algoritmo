@@ -166,9 +166,12 @@ public class Prova2 {
                 }
                 if (sim_nao.equals("s")) {
                     System.out.println("Informe a nota primeira prova: ");
-                    notas1.set(rtn_index, input.nextFloat());
+                    nt1 = input.nextFloat();
+                    notas1.set(rtn_index, nt1);
                     System.out.println("Informe a nota segunda prova: ");
-                    notas2.set(rtn_index, input.nextFloat());
+                    nt2 = input.nextFloat();
+                    notas2.set(rtn_index, nt2);
+                    medias.set(rtn_index, ((nt1 + nt2) / 2));
                 }
                 System.out.println("Deseja editar a quantidade de faltas de " + alunos.get(rtn_index) + "? [s/n]: ");
                 sim_nao = input.next();
@@ -215,20 +218,25 @@ public class Prova2 {
             } else if (opcao == 6) {
                 System.out.println("Alunos aprovados:");
                 for (i = 0; i < alunos.size(); i++) {
-                    if ((medias.get(i) >= 6 && faltas.get(i) <= 3) && medias.get(i) != null) {
+                    if (medias.get(i) != null && (medias.get(i) >= 6 && faltas.get(i) <= 3)) {
                         System.out.println(alunos.get(i) + "|Aprovado com média " + medias.get(i));
                     }
                 }
                 linha();
-                // System.out.println("Alunos reprovados:");
-                // for (i=0;i<alunos.size();i++){
-                //     if (medias.get(i) < 6 && medias.get(i) != null){
-                //         System.out.println(alunos.get(i) + "|Reprovado com a média " + medias.get(i));
-                //     }else if(faltas.get(i) > 3 && medias.get(i) != null){
-                //         System.out.println(alunos.get(i) + "|Reprovado por falta com " + faltas.get(i) + " faltas.");
-                //     }
-                // }
-                // loop para alunos sem nota
+                System.out.println("Alunos reprovados:");
+                for (i = 0; i < alunos.size(); i++) {
+                    if (medias.get(i) != null && medias.get(i) < 6) {
+                        System.out.println(alunos.get(i) + "|Reprovado com a média " + medias.get(i));
+                    } else if (medias.get(i) != null && faltas.get(i) > 3) {
+                        System.out.println(alunos.get(i) + "|Reprovado por falta com " + faltas.get(i) + " faltas");
+                    }
+                }
+                linha();
+                for (i = 0; i < alunos.size(); i++) {
+                    if (medias.get(i) == null) {
+                        System.out.println("id: " + ids.get(i) + " - " + alunos.get(i) + "|Notas não atribuídas!");
+                    }
+                }
             } else if (opcao == 999) {
                 System.out.println("Fim da Sessão...");
                 System.out.println("Volte Sempre!");
