@@ -16,40 +16,23 @@ public class Prova2 {
         int rtn_id = -1;
         for (int i = 0; i < lista.size(); i++) {
             if (id == lista.get(i)) {
-                rtn_id = i;
+                return i;
             }
         }
         return rtn_id;
     }
-
-    // CRIAR FUNÇÃO PARA MOSTRAR OS ARRAYS DE FORMA INTUITIVA
-    public static void printArray(ArrayList<Integer> l_id, ArrayList<String> l_nome, ArrayList<Float> l_nt1,
-            ArrayList<Float> l_nt2, ArrayList<Integer> l_falta, int all) {
-        if (all == 0) {
-
-        }
-    }
-    // //pegar o index do nome de um aluno - FUNÇÃO DESENECESSÁRIA
-    // public static int namecheck(ArrayList<String> lista, String nome) {
-    // int rtn_nm = -1;
-    // for(int i = 0; i < lista.size();i++){
-    // if (lista.get(i).equals(nome)){
-    // rtn_nm = i;
-    // }
-    // }
-    // return rtn_nm;
-    // }
 
     public static void main(String[] args) {
 
         Random random = new Random();
         Scanner input = new Scanner(System.in);
         int opcao = 0, i, nv_id, rtn_id, falta, rtn_index, id;
-        float nt;
+        float nt1, nt2;
         String nome, sim_nao;
         ArrayList<Integer> faltas = new ArrayList<Integer>();
         ArrayList<Float> notas1 = new ArrayList<Float>();
         ArrayList<Float> notas2 = new ArrayList<Float>();
+        ArrayList<Float> medias = new ArrayList<Float>();
         ArrayList<Integer> ids = new ArrayList<Integer>();
         ArrayList<String> alunos = new ArrayList<String>();
         alunos.add("Daniel");
@@ -72,6 +55,7 @@ public class Prova2 {
         for (i = 0; i < alunos.size(); i++) {
             notas1.add(random.nextFloat(10));
             notas2.add(random.nextFloat(10));
+            medias.add((notas1.get(i) + notas2.get(i)) / 2);
             faltas.add(random.nextInt(5));
             ids.add(i + 1);
         }
@@ -86,7 +70,7 @@ public class Prova2 {
             System.out.println("Digite 3 para editar as informações de um aluno;");
             System.out.println("Digite 4 para remover um aluno;");
             System.out.println("Digite 5 para visualizar todos os alunos;");
-            System.out.println("Digite 6 para ir até o menu das notas;");
+            System.out.println("Digite 6 para visualizar os alunos aprovados e reprovados;");
             System.out.println("Digite 999 para sair:");
             linha();
 
@@ -124,18 +108,20 @@ public class Prova2 {
 
                 if (sim_nao.equals("s")) {
                     System.out.print("Informe a nota da primeira prova: ");
-                    nt = input.nextFloat();
-                    notas1.add(nt);
+                    nt1 = input.nextFloat();
+                    notas1.add(nt1);
                     System.out.print("Informe a nota da segunda prova: ");
-                    nt = input.nextFloat();
-                    notas2.add(nt);
+                    nt2 = input.nextFloat();
+                    notas2.add(nt2);
                     System.out.print("Informe a quantidade de faltas de " + nome + ": ");
                     falta = input.nextInt();
                     faltas.add(falta);
+                    medias.add((nt1 + nt2) / 2);
                 } else {
                     notas1.add(null);
                     notas2.add(null);
                     faltas.add(null);
+                    medias.add(null);
                 }
             } else if (opcao == 2) {
                 System.out.print("Informe o id do aluno que deseja visualizar: ");
@@ -211,6 +197,11 @@ public class Prova2 {
                     sim_nao = input.next();
                 }
                 if (sim_nao.equals("s")) {
+                    ids.remove(rtn_index);
+                    alunos.remove(rtn_index);
+                    notas1.remove(rtn_index);
+                    notas2.remove(rtn_index);
+                    faltas.remove(rtn_index);
                     System.out.println("Informações deletadas!");
                 } else if (sim_nao.equals("n")) {
                     System.out.println(
@@ -218,8 +209,26 @@ public class Prova2 {
                 }
             } else if (opcao == 5) {
                 for (i = 0; i < alunos.size(); i++) {
-                    System.out.println("id: " + ids.get(i) + " - " + alunos.get(i) + "|Nota1: " + notas1.get(i) + "|Nota2: " + notas2.get(i) + "|Faltas: " + faltas.get(i));
+                    System.out.println("id: " + ids.get(i) + " - " + alunos.get(i) + "|Nota1: " + notas1.get(i)
+                            + "|Nota2: " + notas2.get(i) + "|Faltas: " + faltas.get(i) + "|Média: " + medias.get(i));
                 }
+            } else if (opcao == 6) {
+                System.out.println("Alunos aprovados:");
+                for (i = 0; i < alunos.size(); i++) {
+                    if ((medias.get(i) >= 6 && faltas.get(i) <= 3) && medias.get(i) != null) {
+                        System.out.println(alunos.get(i) + "|Aprovado com média " + medias.get(i));
+                    }
+                }
+                linha();
+                // System.out.println("Alunos reprovados:");
+                // for (i=0;i<alunos.size();i++){
+                //     if (medias.get(i) < 6 && medias.get(i) != null){
+                //         System.out.println(alunos.get(i) + "|Reprovado com a média " + medias.get(i));
+                //     }else if(faltas.get(i) > 3 && medias.get(i) != null){
+                //         System.out.println(alunos.get(i) + "|Reprovado por falta com " + faltas.get(i) + " faltas.");
+                //     }
+                // }
+                // loop para alunos sem nota
             } else if (opcao == 999) {
                 System.out.println("Fim da Sessão...");
                 System.out.println("Volte Sempre!");
