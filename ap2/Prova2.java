@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class Prova2 {
 
     public static void linha() {
-        System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+        System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
     }
 
     // verificar se o id do aluno já existe, se sim, retornar o index do id
@@ -63,7 +63,7 @@ public class Prova2 {
         while (opcao != 999) {
             linha();
             System.out.println("                MENU INICIAL");
-            System.out.println("--------------------------------------------------");
+            System.out.println("----------------------------------------------------------");
             System.out.println("Informe o que deseja fazer:");
             System.out.println("Digite 1 para adicionar um novo aluno;");
             System.out.println("Digite 2 para visualizar um aluno;");
@@ -132,12 +132,21 @@ public class Prova2 {
                     id = input.nextInt();
                 }
                 rtn_index = idCheck(ids, id);
-
-                System.out.println(ids.get(rtn_index));
-                System.out.println(alunos.get(rtn_index));
-                System.out.println(notas1.get(rtn_index));
-                System.out.println(notas2.get(rtn_index));
-                System.out.println(faltas.get(rtn_index));
+                System.out.println("id:     " + ids.get(rtn_index));
+                System.out.println("Nome:   " + alunos.get(rtn_index));
+                System.out.println("Nota1:  " + notas1.get(rtn_index));
+                System.out.println("Nota2:  " + notas2.get(rtn_index));
+                System.out.println("Media:  " + medias.get(rtn_index));
+                System.out.println("Faltas: " + faltas.get(rtn_index));
+                if (medias.get(rtn_index) == null){
+                    System.out.println("Notas não atribuídas, para adicionar, escolha a opção 3!");
+                }else if (medias.get(rtn_index) >= 6 && faltas.get(rtn_index) <= 3) {
+                    System.out.println("Situação: Aprovado!");
+                }else if(medias.get(rtn_index)<6){
+                    System.out.println("Situação: Reprovado por média!");
+                }else{
+                    System.out.println("Situação: Reprovado por falta!");
+                }
             } else if (opcao == 3) {
                 System.out.println("Informe o id do aluno que deseja editar: ");
                 id = input.nextInt();
